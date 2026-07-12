@@ -1,0 +1,28 @@
+# http://timstaley.co.uk/posts/making-git-and-jupyter-notebooks-play-nice/
+# https://www.xltrail.com/blog/git-diff-spreadsheetcompare
+*.xla diff=excel
+*.xla merge=excel
+*.xlam diff=excel
+*.xlam merge=excel
+*.xls diff=excel
+*.xls merge=excel
+*.xlsb diff=excel
+*.xlsb merge=excel
+*.xlsm diff=excel
+*.xlsm merge=excel
+*.xlsx diff=excel
+*.xlsx merge=excel
+*.xlt diff=excel
+*.xlt merge=excel
+*.xltm diff=excel
+*.xltm merge=excel
+*.xltx diff=excel
+*.xltx merge=excel
+#
+*.doc? diff=msword
+*.dot? diff=msword
+*.DOC? diff=msword
+*.DOT? diff=msword
+#
+*.pdf   diff=astextplain
+*.PDF   diff=astextplain
