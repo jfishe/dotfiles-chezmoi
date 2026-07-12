@@ -1,0 +1,57 @@
+# ~/.config/ctags/defaults.ctags
+#
+# Keep tag generation quiet and avoid giant/noisy tagfiles.
+
+--recurse=yes
+--sort=yes
+--tag-relative=yes
+
+# Keep fields modest: line numbers + kind are usually enough.
+# (Add more only if you actually use them in your editor integrations.)
+# ctags won't recognize
+--fields=+nK
+
+# Not compatible with Gutentags or re-running ctags without deleting tags file first.
+# Avoid extra tag classes unless you want them.
+# (extras add additional entries like prototypes, file tags, etc.)
+# --extras=
+
+# --exclude=$RECYCLE.BIN
+# --exclude=*
+# --exclude=*$py.class
+# --exclude=*.bundle.js
+# --exclude=*.chunk.js
+# --exclude=*.min.css
+# --exclude=*.min.js
+# --exclude=*.py[cod]
+# --exclude=.DS_Store
+# --exclude=.cache
+# --exclude=.cookiecutter_replay
+# --exclude=.cookiecutters
+# --exclude=.copilot
+# --exclude=.ctags
+# --exclude=.ctags.d
+# --exclude=.docker
+# --exclude=.env
+# --exclude=.git
+# --exclude=.hg
+# --exclude=.idea
+# --exclude=.matplotlib
+# --exclude=.mypy_cache
+# --exclude=.obsidian
+# --exclude=.pixi
+# --exclude=.pytest_cache
+# --exclude=.svn
+# --exclude=.tags
+# --exclude=.tox
+# --exclude=.venv
+# --exclude=.vscode
+# --exclude=.vscode-insiders
+# --exclude=Zotero
+# --exclude=__pycache__
+# --exclude=_build
+# --exclude=ctags.d
+# --exclude=env
+# --exclude=node_modules
+# --exclude=tags
+# --exclude=venv
