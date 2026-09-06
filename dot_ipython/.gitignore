@@ -1,0 +1,23 @@
+# Ignore everything by default.
+*
+
+# Keep repository metadata.
+!/.gitignore
+
+# Keep intentional IPython configuration.
+!/ipython_config.py
+!/profile_default/
+!/profile_default/ipython_config.py
+
+# Keep custom startup hooks, but not the stock README.
+!/profile_default/startup/
+!/profile_default/startup/*.py
+!/profile_default/startup/*.ipy
+
+# Ignore machine-generated runtime state.
+profile_default/history.sqlite
+profile_default/db/
+profile_default/log/
+profile_default/pid/
+profile_default/security/
+profile_default/startup/README
