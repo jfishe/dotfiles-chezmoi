@@ -1,0 +1,21 @@
+{
+  "load_extensions": {
+    "nbextensions_configurator/config_menu/main": true,
+    "contrib_nbextensions_help_item/main": true,
+    "latex_envs/latex_envs": false,
+    "jupyter-js-widgets/extension": false,
+    "python-markdown/main": true,
+    "ruler/main": true,
+    "comment-uncomment/main": true,
+    "spellchecker/main": true,
+    "toc2/main": true,
+    "jupyter-black-master/jupyter-black": true,
+    "nbdime/index": true
+  },
+  "comment_uncomment_keybinding": "alt-ctrl-c",
+  "Cell": {
+    "cm_config": {
+      "lineNumbers": false
+    }
+  }
+}

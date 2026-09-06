@@ -1,0 +1,8 @@
+# JupyterLab workspace layouts are UI/session state.
+/lab/workspaces/
+
+# Jupyter creates this marker after migrating config layouts.
+/migrated
+
+# Per-user announcement read/dismiss state, not intentional config.
+/serverconfig/jupyterlabapputilsextensionannouncements.json
