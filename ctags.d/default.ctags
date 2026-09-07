@@ -57,6 +57,15 @@
 # --exclude=.pylint.d
 # --exclude=Miniforge3
 
+# --- PowerShell -------------------------------------------------------
+# Documents\PowerShell\Modules (and WindowsPowerShell\Modules) is PowerShell's
+# node_modules: installed third-party module code. PSScriptAnalyzer alone
+# ships compatibility_profiles/*.json files that are huge cmdlet/parameter
+# catalogs (one per OS+PS-version combo) - ctags' JSON parser tags every
+# object key in them. Measured: this one exclude removes ~99.7% of a 14.5M
+# tag / 5.8GB tags file. Moved out of the "may hold real source" list below.
+--exclude=Modules
+
 # --- Node / web builds ----------------------------------------------------
 --exclude=node_modules
 # --exclude=*.min.js
@@ -68,6 +77,7 @@
 --exclude=.cache
 --exclude=.cargo
 --exclude=.claude
+--exclude=.claude.json
 --exclude=.config
 --exclude=.cookiecutter_replay
 --exclude=.cookiecutters
@@ -79,6 +89,11 @@
 --exclude=Zotero
 --exclude=_build
 --exclude=build
+
+# --- Generated content ------------------------------------------------
+# vimwiki's rendered HTML output - generated, not source.
+--exclude=vimwiki_html
+--exclude=vimwiki_home_html
 
 # --- Recycle bin / temp ----------------------------------------------------
 --exclude=$RECYCLE.BIN
@@ -109,7 +124,8 @@
 # --exclude=Pictures
 # --exclude=Videos
 # --exclude=Scripts
-# --exclude=Modules
+# (Modules moved to the PowerShell section above - it's a dependency
+# cache, not source, per the measurement noted there.)
 
 # --- Misc --------------------------------------------------------------
 # --exclude=.env
