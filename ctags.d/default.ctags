@@ -1,4 +1,4 @@
-# ~/.config/ctags/default.ctags — global options, auto-loaded on every run.
+# ~/.config/ctags/defaults.ctags
 #
 # Universal Ctags looks for *.ctags config in (first match wins the
 # XDG_CONFIG_HOME/HOME choice, the rest all load together):
@@ -37,7 +37,7 @@
 --exclude=.vscode-remote-containers
 --exclude=.obsidian
 # --exclude=.idea
-# --exclude=.vim
+--exclude=.vim
 # --exclude=vim??
 --exclude=vimfiles
 
@@ -65,19 +65,20 @@
 # --exclude=*.chunk.js
 
 # --- Build output / tool caches -------------------------------------------
---exclude=build
---exclude=_build
 --exclude=.cache
---exclude=.config
---exclude=.docker
---exclude=.jupyter
---exclude=.matplotlib
 --exclude=.cargo
---exclude=.local/share
+--exclude=.claude
+--exclude=.config
 --exclude=.cookiecutter_replay
 --exclude=.cookiecutters
 --exclude=.copilot
+--exclude=.docker
+--exclude=.jupyter
+--exclude=.local/share
+--exclude=.matplotlib
 --exclude=Zotero
+--exclude=_build
+--exclude=build
 
 # --- Recycle bin / temp ----------------------------------------------------
 --exclude=$RECYCLE.BIN
