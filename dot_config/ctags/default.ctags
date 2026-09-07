@@ -1,71 +1,138 @@
---totally-not-an-option
-# XDG_CONFIG_HOME = %APPDATA%
-# XDG_DATA_HOME   = %APPDATA%
-# XDG_STATE_HOME  = %LOCALAPPDATA%
-# XDG_CACHE_HOME  = %LOCALAPPDATA%\Cache
-$XDG_CONFIG_HOME/ctags/*.ctags, or
-$HOME/.config/ctags/*.ctags
-if $XDG_CONFIG_HOME is not defined.
-
-# $HOME/.ctags.d/*.ctags
-# $HOMEDRIVE$HOMEPATH/ctags.d/*.ctags (on MS Windows only)
-# .ctags.d/*.ctags
-# ctags.d/*.ctags
-
-# ~/.config/ctags/defaults.ctags
+# ~/.config/ctags/default.ctags — global options, auto-loaded on every run.
 #
-# Keep tag generation quiet and avoid giant/noisy tagfiles.
+# Universal Ctags looks for *.ctags config in (first match wins the
+# XDG_CONFIG_HOME/HOME choice, the rest all load together):
+#   $XDG_CONFIG_HOME/ctags/*.ctags   (on Windows, XDG_CONFIG_HOME defaults to %APPDATA%)
+#   $HOME/.config/ctags/*.ctags      (used when XDG_CONFIG_HOME is unset)
+#   $HOME/.ctags.d/*.ctags
+#   $HOMEDRIVE$HOMEPATH/ctags.d/*.ctags   (Windows only)
+#   ./.ctags.d/*.ctags, ./ctags.d/*.ctags (project-local, per invocation)
+#
+# Everything lives in this single file, in this order, on purpose: ctags
+# applies options top-to-bottom, and --exclude only affects paths walked
+# after it's registered — so all excludes are listed before --recurse.
+# (exclude.ctags / windows_home.ctags are kept as empty placeholders;
+# splitting excludes into another file made their order relative to
+# --recurse depend on alphabetical *.ctags load order, which is fragile.)
+
+# ===========================================================================
+# Excludes
+# ===========================================================================
+
+# --- Version control ---------------------------------------------------
+--exclude=.git
+--exclude=.hg
+--exclude=.svn
+
+# --- ctags' own output/config, so a tags file never re-tags itself -----
+--exclude=tags
+--exclude=.tags
+# --exclude=.ctags
+# --exclude=.ctags.d
+# --exclude=ctags.d
+
+# --- Editors / IDEs -----------------------------------------------------
+--exclude=.vscode
+--exclude=.vscode-insiders
+--exclude=.vscode-remote-containers
+--exclude=.obsidian
+# --exclude=.idea
+# --exclude=.vim
+# --exclude=vim??
+--exclude=vimfiles
+
+# --- Python ---------------------------------------------------------------
+--exclude=.venv
+# --exclude=venv
+# --exclude=env
+--exclude=.tox
+--exclude=.pixi
+--exclude=.mypy_cache
+--exclude=.pytest_cache
+--exclude=.ruff_cache
+--exclude=__pycache__
+# --exclude=*.py[cod]
+# --exclude=*$py.class
+# --exclude=.anaconda
+# --exclude=.pylint.d
+# --exclude=Miniforge3
+
+# --- Node / web builds ----------------------------------------------------
+--exclude=node_modules
+# --exclude=*.min.js
+# --exclude=*.min.css
+# --exclude=*.bundle.js
+# --exclude=*.chunk.js
+
+# --- Build output / tool caches -------------------------------------------
+--exclude=build
+--exclude=_build
+--exclude=.cache
+--exclude=.config
+--exclude=.docker
+--exclude=.jupyter
+--exclude=.matplotlib
+--exclude=.cargo
+--exclude=.local/share
+--exclude=.cookiecutter_replay
+--exclude=.cookiecutters
+--exclude=.copilot
+--exclude=Zotero
+
+# --- Recycle bin / temp ----------------------------------------------------
+--exclude=$RECYCLE.BIN
+--exclude=RECYCLER
+--exclude=Temp
+--exclude=temp
+--exclude=tmp
+--exclude=*.temp
+--exclude=*.tmp
+# --exclude=pack
+
+# --- Windows profile clutter (mainly matters for a whole-$HOME scan) ------
+--exclude=AppData
+--exclude=Local
+--exclude=OneDrive
+--exclude=Google Drive
+--exclude=iCloudDrive
+--exclude=Roaming
+--exclude=Intel
+--exclude=IntelGraphicsProfiles
+--exclude=MathJax
+
+# --- Folders that may hold real source: left included by default ----------
+# --exclude=Desktop
+# --exclude=Documents
+# --exclude=Downloads
+# --exclude=GitHub
+# --exclude=Pictures
+# --exclude=Videos
+# --exclude=Scripts
+# --exclude=Modules
+
+# --- Misc --------------------------------------------------------------
+# --exclude=.env
+# --exclude=*.ini
+# --exclude=.DS_Store
+
+# --- Site-specific: confirm these still point at real paths on this machine
+--exclude=userprofile
+--exclude=winhome
+--exclude=dev
+
+# ===========================================================================
+# Behavior (must come after the excludes above)
+# ===========================================================================
 
 --recurse=yes
 --sort=yes
 --tag-relative=yes
 
-# Keep fields modest: line numbers + kind are usually enough.
-# (Add more only if you actually use them in your editor integrations.)
-# ctags won't recognize
+# Keep fields modest: line numbers + kind cover most editor integrations.
+# Add more only if something you use actually needs them (e.g. +z for
+# scope — but check your ctags build supports it before relying on it).
 --fields=+nK
 
-# Not compatible with Gutentags or re-running ctags without deleting tags file first.
-# Avoid extra tag classes unless you want them.
-# (extras add additional entries like prototypes, file tags, etc.)
-# --extras=
-
-# --exclude=$RECYCLE.BIN
-# --exclude=*
-# --exclude=*$py.class
-# --exclude=*.bundle.js
-# --exclude=*.chunk.js
-# --exclude=*.min.css
-# --exclude=*.min.js
-# --exclude=*.py[cod]
-# --exclude=.DS_Store
-# --exclude=.cache
-# --exclude=.cookiecutter_replay
-# --exclude=.cookiecutters
-# --exclude=.copilot
-# --exclude=.ctags
-# --exclude=.ctags.d
-# --exclude=.docker
-# --exclude=.env
-# --exclude=.git
-# --exclude=.hg
-# --exclude=.idea
-# --exclude=.matplotlib
-# --exclude=.mypy_cache
-# --exclude=.obsidian
-# --exclude=.pixi
-# --exclude=.pytest_cache
-# --exclude=.svn
-# --exclude=.tags
-# --exclude=.tox
-# --exclude=.venv
-# --exclude=.vscode
-# --exclude=.vscode-insiders
-# --exclude=Zotero
-# --exclude=__pycache__
-# --exclude=_build
-# --exclude=ctags.d
-# --exclude=env
-# --exclude=node_modules
-# --exclude=tags
-# --exclude=venv
+# --extras= intentionally left unset: extra tag classes (file tags,
+# pseudo-tags, etc.) aren't compatible with Gutentags, and re-running
+# ctags without deleting the previous tags file first can duplicate entries.
