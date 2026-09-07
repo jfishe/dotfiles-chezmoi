@@ -1,3 +1,17 @@
+--totally-not-an-option
+# XDG_CONFIG_HOME = %APPDATA%
+# XDG_DATA_HOME   = %APPDATA%
+# XDG_STATE_HOME  = %LOCALAPPDATA%
+# XDG_CACHE_HOME  = %LOCALAPPDATA%\Cache
+$XDG_CONFIG_HOME/ctags/*.ctags, or
+$HOME/.config/ctags/*.ctags
+if $XDG_CONFIG_HOME is not defined.
+
+# $HOME/.ctags.d/*.ctags
+# $HOMEDRIVE$HOMEPATH/ctags.d/*.ctags (on MS Windows only)
+# .ctags.d/*.ctags
+# ctags.d/*.ctags
+
 # ~/.config/ctags/defaults.ctags
 #
 # Keep tag generation quiet and avoid giant/noisy tagfiles.
