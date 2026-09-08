@@ -1,6 +1,2 @@
 [wsl2]
 guiApplications = true
-
-networkingMode=Mirrored
-[experimental]
-hostAddressLoopback=true

@@ -19,6 +19,7 @@ Or review changes before applying:
 ```sh
 chezmoi diff
 chezmoi apply
+# chezmoi apply --profile home
 ```
 
 `README.md` and `LICENSE.txt` are excluded from application via
