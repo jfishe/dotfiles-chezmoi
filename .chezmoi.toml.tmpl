@@ -1,0 +1,6 @@
+{{/* chezmoi's --promptString flag matches on the prompt text below (the
+     third argument), not the data key, so keep both "profile" for
+     `chezmoi init --promptString profile=<value>` to work non-interactively */ -}}
+{{ $profile := promptStringOnce . "profile" "profile" -}}
+[data]
+    profile = {{ $profile | quote }}

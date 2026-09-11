@@ -1,6 +1,8 @@
 [wsl2]
 guiApplications = true
+{{- if eq .profile "home" }}
 
 networkingMode=Mirrored
 [experimental]
 hostAddressLoopback=true
+{{- end }}

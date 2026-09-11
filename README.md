@@ -19,8 +19,13 @@ Or review changes before applying:
 ```sh
 chezmoi diff
 chezmoi apply
-# chezmoi apply --profile home
 ```
+
+On first `chezmoi init`, you'll be prompted once for a `profile`
+(`work`/`home`); the answer is stored in the local, untracked
+`~/.config/chezmoi/chezmoi.toml` and used by templated files (e.g.
+`dot_wslconfig.tmpl`) to vary content per machine. To answer
+non-interactively: `chezmoi init --promptString profile=home --apply`.
 
 `README.md` and `LICENSE.txt` are excluded from application via
 `.chezmoiignore` — they document this repo, not files to place in `$HOME`.
@@ -62,7 +67,8 @@ chezmoi apply
   Jupyter notebook/lab/server config
 - **Claude Code** — default `CLAUDE.md` project config (uv-based Python
   project rules: package management, testing, linting, type checking)
-- **WSL** — `.wslconfig` (mirrored networking, GUI app support)
+- **WSL** — `.wslconfig` (GUI app support everywhere; mirrored networking +
+  loopback only on the `home` profile)
 - **uv** — global `uv.toml` (`exclude-newer = "7 days"`, to avoid pulling in
   packages published very recently)
 
