@@ -2,7 +2,7 @@
 
 Personal dotfiles, managed with [chezmoi].
 
-## Install
+## Installation
 
 ```sh
 chezmoi init --apply jfishe/dotfiles-chezmoi
@@ -95,6 +95,43 @@ on the next `chezmoi apply`;
 this is install-only and
 never uninstalls a package removed from the list.
 
+## Git for Windows
+
+[Git for Windows silent or unattended installation]
+allows changes from the default options,
+supported by [winget].
+
+[ElateralLtd git commit template] provides a template, which was updated
+per [Conventional Commits].
+
+### Pixi and conda-forge
+
+[Pixi] supports [conda-forge] packages
+without activating an environment,
+like [Miniforge].
+
+```powershell
+# powershell -ExecutionPolicy Bypass
+# Invoke-RestMethod -UseBasicParsing https://pixi.sh/install.ps1 | Invoke-Expression
+
+pixi global install nodejs starship perl
+```
+
+## Vim Dependencies
+
+[Vim configuration] depends on [junegunn fzf.vim].
+
+- [fzf] a general-purpose command-line fuzzy finder and an interactive terminal toolkit
+- [bat] for syntax-highlighted preview
+- If [delta] is available, `GF?`, `Commits` and `BCommits` will use it to
+  format `git diff` output.
+- `Rg` requires [ripgrep (rg)]
+- `Tags` and `Helptags` require Perl
+- `Tags PREFIX` requires `readtags` command from [Universal Ctags]
+
+[Conquer of Completion] does not depend on the python compiled with Vim but
+does require `node.js`.
+
 ## License
 
 MIT --- see [LICENSE.txt].
@@ -103,4 +140,18 @@ MIT --- see [LICENSE.txt].
 [KeeAgent]: https://gist.github.com/strarsis/e533f4bca5ae158481bbe53185848d49
 [starship]: https://starship.rs
 [winget]: https://learn.microsoft.com/en-us/windows/package-manager/winget/
+[Git for Windows silent or unattended installation]: https://gitforwindows.org/silent-or-unattended-installation.html
+[ElateralLtd git commit template]: https://github.com/ElateralLtd/git-commit-template
+[Conventional Commits]: https://www.conventionalcommits.org/en/v1.0.0/
+[Pixi]: https://pixi.prefix.dev/latest/
+[conda-forge]: https://conda-forge.org/
+[Miniforge]: https://docs.conda.io/projects/conda
+[Vim configuration]: https://github.com/jfishe/vimfiles
+[junegunn fzf.vim]: https://github.com/junegunn/fzf.vim
+[fzf]: https://github.com/junegunn/fzf
+[bat]: https://github.com/sharkdp/bat
+[delta]: https://github.com/dandavison/delta
+[ripgrep (rg)]: https://github.com/BurntSushi/ripgrep
+[Universal Ctags]: https://ctags.io/
+[Conquer of Completion]: https://github.com/neoclide/coc.nvim
 [LICENSE.txt]: LICENSE.txt

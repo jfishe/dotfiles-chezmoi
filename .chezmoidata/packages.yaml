@@ -18,3 +18,24 @@ packages:
   - id: Git.Git
     location: '$env:LOCALAPPDATA\Programs\Git'
     custom: git_options.ini
+  - id: Google.Chrome.EXE
+    profiles: [home]
+  - id: Docker.DockerDesktop
+    profiles: [home]
+  - id: prefix-dev.pixi
+  - id: JohnMacFarlane.Pandoc
+    profiles: [home]
+  - id: Starship.Starship
+    profiles: [home]
+  - id: BurntSushi.ripgrep.MSVC
+  - id: UniversalCtags.Ctags
+  - id: vim.vim
+  - id: astral-sh.uv
+  - id: dandavison.delta
+  - id: eza-community.eza
+  - id: jstarks.npiperelay
+  - id: junegunn.fzf
+  - id: sharkdp.bat
+  - id: sharkdp.fd
+  - id: Microsoft.PowerToys
+  - id: Microsoft.WindowsTerminal
