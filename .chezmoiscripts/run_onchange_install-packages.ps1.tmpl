@@ -1,0 +1,67 @@
+{{- if eq .chezmoi.os "windows" -}}
+{{- $pkgs := list -}}
+{{- range .packages -}}
+{{-   $profiles := index . "profiles" -}}
+{{-   if or (not $profiles) (has $.profile $profiles) -}}
+{{-     $pkgs = append $pkgs . -}}
+{{-   end -}}
+{{- end -}}
+#Requires -Version 5.1
+$ErrorActionPreference = 'Stop'
+
+# Filtered, JSON-embedded package list from .chezmoidata/packages.yaml.
+# Editing packages.yaml changes this rendered block, which changes this
+# script's content hash -- that's what makes chezmoi re-run a
+# run_onchange_ script on the next `chezmoi apply`.
+$packages = @'
+{{ $pkgs | toJson }}
+'@ | ConvertFrom-Json
+
+$failures = @()
+
+foreach ($pkg in $packages) {
+    Write-Host "==> $($pkg.id)"
+
+    # Idempotency pre-check: skip entirely if already installed.
+    winget list --id $pkg.id --exact --source winget --accept-source-agreements *> $null
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "    already installed, skipping"
+        continue
+    }
+
+    $scope = if ($pkg.scope) { $pkg.scope } else { 'user' }
+    $installArgs = @(
+        'install', '--exact', '--id', $pkg.id, '--source', 'winget',
+        '--scope', $scope,
+        '--accept-package-agreements', '--accept-source-agreements',
+        '--disable-interactivity', '--silent'
+    )
+
+    if ($pkg.location) {
+        $installArgs += @('--location', $ExecutionContext.InvokeCommand.ExpandString($pkg.location))
+    }
+
+    if ($pkg.custom) {
+        $iniPath = Join-Path '{{ .chezmoi.sourceDir }}' 'winget' $pkg.custom
+        if (-not (Test-Path $iniPath)) { throw "Answer file not found: $iniPath" }
+        $installArgs += @('--custom', "/LOADINF=`"$iniPath`"")
+    }
+
+    winget @installArgs
+    $exit = $LASTEXITCODE
+
+    # winget's exit codes for benign cases (e.g. "no applicable update")
+    # vary by version. The `winget list` pre-check above is the primary
+    # idempotency guard; extend this allow-list if you observe other
+    # benign non-zero codes on this machine.
+    $benignExitCodes = @(0)
+    if ($benignExitCodes -notcontains $exit) {
+        Write-Warning "    winget install exited $exit for $($pkg.id)"
+        $failures += $pkg.id
+    }
+}
+
+if ($failures.Count -gt 0) {
+    throw "Package install failed for: $($failures -join ', ')"
+}
+{{- end -}}

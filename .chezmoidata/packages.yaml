@@ -1,0 +1,20 @@
+# Packages installed via winget by
+# .chezmoiscripts/run_onchange_install-packages.ps1.tmpl on `chezmoi apply`.
+#
+# Fields per package:
+#   id        (required) winget package identifier, matched with --exact
+#   scope     (optional, default "user") "user" or "machine" -- "machine"
+#             requires an elevated shell for `chezmoi apply`
+#   location  (optional) install path, passed to --location. May reference
+#             environment variables (e.g. '$env:LOCALAPPDATA\...'); expanded
+#             at script runtime, not here.
+#   custom    (optional) filename of a winget answer file under winget/
+#             (source-only, excluded from application via .chezmoiignore),
+#             passed as --custom /LOADINF=<path>
+#   profiles  (optional) list of profile names (see .chezmoi.toml.tmpl) this
+#             package installs under, e.g. [work]. Omit to install on every
+#             profile.
+packages:
+  - id: Git.Git
+    location: '$env:LOCALAPPDATA\Programs\Git'
+    custom: git_options.ini
