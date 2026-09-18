@@ -11,6 +11,9 @@
 #   custom    (optional) filename of a winget answer file under winget/
 #             (source-only, excluded from application via .chezmoiignore),
 #             passed as --custom /LOADINF=<path>
+#   customArgs (optional) raw string of installer-specific switches passed
+#             verbatim via --custom, for installers (e.g. NSIS) that take
+#             plain command-line flags instead of an INF answer file
 #   profiles  (optional) list of profile names (see .chezmoi.toml.tmpl) this
 #             package installs under, e.g. [work]. Omit to install on every
 #             profile.
@@ -30,6 +33,7 @@ packages:
   - id: BurntSushi.ripgrep.MSVC
   - id: UniversalCtags.Ctags
   - id: vim.vim
+    customArgs: '/addpath=1'
   - id: astral-sh.uv
   - id: dandavison.delta
   - id: eza-community.eza

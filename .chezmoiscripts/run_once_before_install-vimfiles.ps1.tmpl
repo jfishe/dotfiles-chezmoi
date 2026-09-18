@@ -1,0 +1,27 @@
+{{- if eq .chezmoi.os "windows" -}}
+#Requires -Version 5.1
+$ErrorActionPreference = 'Stop'
+
+$RepoUrl = 'https://github.com/jfishe/vimfiles.git'
+$VimfilesPath = Join-Path $env:LOCALAPPDATA 'vimfiles'
+
+# Safety guard: if anything already exists at this path, never touch it.
+# An existing clone may have locally-modified/unpushed submodule pointers
+# (coc.nvim, vimtex, etc.) that must never be reset or replaced.
+if (Test-Path -LiteralPath $VimfilesPath) {
+    Write-Host "==> $VimfilesPath already exists, skipping clone"
+    exit 0
+}
+
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    throw "git.exe not found on PATH. Install Git for Windows first, then " +
+          "re-run 'chezmoi apply' -- this script retries automatically " +
+          "since it only records success once the clone completes."
+}
+
+Write-Host "==> Cloning $RepoUrl to $VimfilesPath"
+git -c core.autocrlf=false -c core.eol=lf clone --recurse-submodules $RepoUrl $VimfilesPath
+if ($LASTEXITCODE -ne 0) {
+    throw "git clone failed with exit code $LASTEXITCODE"
+}
+{{- end -}}

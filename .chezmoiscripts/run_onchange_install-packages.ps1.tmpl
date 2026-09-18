@@ -47,6 +47,10 @@ foreach ($pkg in $packages) {
         $installArgs += @('--custom', "/LOADINF=`"$iniPath`"")
     }
 
+    if ($pkg.customArgs) {
+        $installArgs += @('--custom', $pkg.customArgs)
+    }
+
     winget @installArgs
     $exit = $LASTEXITCODE
 
