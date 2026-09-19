@@ -59,9 +59,11 @@ chezmoi apply
   - `[include]` pulls in an untracked, installation-specific
     `~/.dotfiles/.gitconfig` (e.g. for a credential helper)
 - **Editor** --- `.editorconfig`
-- **Terminal** --- [starship] prompt config
+- **Windows Terminal** --- [starship] prompt config
   (`follow_symlinks = false`); mintty (Git Bash terminal) config with
-  bundled Solarized Dark/Light themes
+  bundled Solarized Dark/Light themes.
+  `settings.json` is configured with keybindings for ctrl and shift+enter
+  combinations. Vim settings override ConPTY failure to parse CSI-u signals.
 - **ctags** --- `ctags.d/default.ctags`. On Windows, Universal Ctags (v6.1+)
   reads config from `%HOMEDRIVE%%HOMEPATH%\ctags.d\*.ctags` --- a separate
   location from the XDG `ctags/*.ctags` config Jupyter/Python tooling uses ---
