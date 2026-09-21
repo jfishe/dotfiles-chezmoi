@@ -18,6 +18,8 @@
 #             package installs under, e.g. [work]. Omit to install on every
 #             profile.
 packages:
+  - id: vim.vim
+    customArgs: '/addpath=1'
   - id: Git.Git
     location: '$env:LOCALAPPDATA\Programs\Git'
     custom: git_options.ini
@@ -30,10 +32,10 @@ packages:
     profiles: [home]
   - id: Starship.Starship
     profiles: [home]
+  - id: SumatraPDF.SumatraPDF
+    profiles: [home]
   - id: BurntSushi.ripgrep.MSVC
   - id: UniversalCtags.Ctags
-  - id: vim.vim
-    customArgs: '/addpath=1'
   - id: astral-sh.uv
   - id: dandavison.delta
   - id: eza-community.eza
