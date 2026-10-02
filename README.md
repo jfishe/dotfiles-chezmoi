@@ -64,6 +64,10 @@ chezmoi apply
   bundled Solarized Dark/Light themes.
   `settings.json` is configured with keybindings for ctrl and shift+enter
   combinations. Vim settings override ConPTY failure to parse CSI-u signals.
+  The default shell and profile list differ by `profile` (PowerShell 7 on
+  `home`; Windows PowerShell plus Git Bash on `work`). Since it's a template,
+  changes made in Terminal's settings UI must be copied back into
+  `settings.json.tmpl` by hand (`chezmoi re-add` skips templates).
 - **ctags** --- `ctags.d/default.ctags`. On Windows, Universal Ctags (v6.1+)
   reads config from `%HOMEDRIVE%%HOMEPATH%\ctags.d\*.ctags` --- a separate
   location from the XDG `ctags/*.ctags` config Jupyter/Python tooling uses ---
