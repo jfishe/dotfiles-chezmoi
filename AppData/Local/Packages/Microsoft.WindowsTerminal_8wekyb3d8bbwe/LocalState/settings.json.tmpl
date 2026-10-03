@@ -7,25 +7,9 @@
             "command":
             {
                 "action": "sendInput",
-                "input": "\u001b\r"
-            },
-            "id": "User.sendInput.8F63D3A9"
-        },
-        {
-            "command":
-            {
-                "action": "sendInput",
                 "input": "\u001b[13;5u"
             },
             "id": "User.sendInput.F8A79DCB"
-        },
-        {
-            "command":
-            {
-                "action": "sendInput",
-                "input": "\u001b[13;2u"
-            },
-            "id": "User.sendInput.8882FD6D"
         },
         {
             "command":
@@ -36,31 +20,22 @@
             "id": "User.sendInput.C7F41A02"
         },
         {
-            "command": "togglePaneZoom",
-            "id": "User.togglePaneZoom"
-        },
-        {
             "command":
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "sendInput",
+                "input": "\u001b[13;2u"
             },
-            "id": "User.copy.644BA8F2"
-        },
-        {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
+            "id": "User.sendInput.8882FD6D"
         }
     ],
-    "alwaysShowTabs": true,
-    "centerOnLaunch": true,
     "copyFormatting": "none",
-    "copyOnSelect": false,
     "defaultProfile": "{{ if eq .profile "work" }}{61c54bbd-c2c6-5271-96e7-009a87ff44bf}{{ else }}{574e775e-4f2a-5b96-ac1e-a2962a402336}{{ end }}",
+    "disabledProfileSources":
+    [
+        "Windows.Terminal.Azure",
+        "Windows.Terminal.Wsl"
+    ],
+    "firstWindowPreference": "persistedWindowLayout",
     "keybindings":
     [
         {
@@ -76,23 +51,11 @@
             "keys": "ctrl+shift+enter"
         },
         {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+v"
-        },
-        {
-            "id": "User.paste",
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "id": "User.copy.644BA8F2",
+            "id": "Terminal.CopyToClipboard",
             "keys": "ctrl+c"
         },
         {
-            "id": "User.togglePaneZoom",
+            "id": "Terminal.TogglePaneZoom",
             "keys": "alt+shift+enter"
         }
     ],
@@ -118,10 +81,12 @@
             "cursorShape": "emptyBox",
             "font":
             {
-                "face": "CaskaydiaCove Nerd Font",
+                "face": "CaskaydiaCove Nerd Font Mono",
                 "size": 11
             },
-            "intenseTextStyle": "all"
+            "historySize": 50000,
+            "intenseTextStyle": "all",
+            "showMarksOnScrollbar": true
         },
         "list":
         [
@@ -136,6 +101,7 @@
                 "guid": "{1131f19d-23ce-5734-b476-b1c1b2289d2f}",
                 "hidden": false,
                 "name": "Ubuntu-24.04",
+                "pathTranslationStyle": "wsl",
                 "source": "Microsoft.WSL"
             },
             {
@@ -145,22 +111,10 @@
                 "name": "Command Prompt"
             },
             {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": true,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
                 "name": "Git Bash",
                 "source": "Git"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": true,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
             }
 {{- else }}
             {
@@ -174,6 +128,7 @@
                 "guid": "{2e335228-8ef9-5d38-9355-b719f464c1c8}",
                 "hidden": false,
                 "name": "Pengwin",
+                "pathTranslationStyle": "wsl",
                 "source": "WhitewaterFoundryLtd.Co.16571368D6CFF_kd1vv0z0vy70w"
             },
             {
@@ -189,25 +144,12 @@
                 "name": "Windows PowerShell"
             },
             {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": true,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
                 "commandline": "%SystemRoot%\\System32\\wsl.exe --distribution-id {e0a318da-e3e4-4046-a878-9fd44682d313}",
                 "guid": "{0f3cd719-7189-51c1-97f2-2c417d44180b}",
                 "hidden": false,
                 "name": "Ubuntu",
+                "pathTranslationStyle": "wsl",
                 "source": "Microsoft.WSL",
-                "startingDirectory": "~"
-            },
-            {
-                "commandline": "%SystemRoot%\\System32\\wsl.exe --distribution WLinux",
-                "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
-                "hidden": true,
-                "name": "Pengwin",
-                "source": "Windows.Terminal.Wsl",
                 "startingDirectory": "~"
             }
 {{- end }}
