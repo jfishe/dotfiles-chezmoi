@@ -68,6 +68,21 @@ chezmoi apply
   `home`; Windows PowerShell plus Git Bash on `work`). Since it's a template,
   changes made in Terminal's settings UI must be copied back into
   `settings.json.tmpl` by hand (`chezmoi re-add` skips templates).
+  - OSC 133 [shell integration]: `autoMarkPrompts` and `showMarksOnScrollbar`,
+    `ctrl+up`/`ctrl+down` jump between prompt marks (`scrollToMark`), plus
+    `selectCommand`/`selectOutput` actions
+  - Bundled `Tinty` color scheme (tinted8 Github Dark High Contrast) with
+    `adjustIndistinguishableColors` set to `never`
+  - Restores the previous window layout on launch, keeps 50,000 lines of
+    scrollback, and disables the auto-generated Azure Cloud Shell and legacy
+    WSL profile sources
+- **dircolors** --- `.dircolors`, a truecolor tinted8 Github Dark High Contrast
+  theme matching Terminal's `Tinty` scheme
+  (`eval "$(dircolors -b ~/.dircolors)"`)
+- **SumatraPDF** --- `SumatraPDF.cmd` in `AppData\Local\Microsoft\WindowsApps`
+  (on `PATH`) finds the winget-installed exe and launches it detached, so
+  `:!SumatraPDF "%"` works from Vim without blocking. The winget package is
+  installed on the `home` profile only.
 - **ctags** --- `ctags.d/default.ctags`. On Windows, Universal Ctags (v6.1+)
   reads config from `%HOMEDRIVE%%HOMEPATH%\ctags.d\*.ctags` --- a separate
   location from the XDG `ctags/*.ctags` config Jupyter/Python tooling uses ---
@@ -193,6 +208,7 @@ MIT --- see [LICENSE.txt].
 [chezmoi]: https://www.chezmoi.io/
 [KeeAgent]: https://gist.github.com/strarsis/e533f4bca5ae158481bbe53185848d49
 [starship]: https://starship.rs
+[shell integration]: https://learn.microsoft.com/en-us/windows/terminal/tutorials/shell-integration
 [winget]: https://learn.microsoft.com/en-us/windows/package-manager/winget/
 [Git for Windows silent or unattended installation]: https://gitforwindows.org/silent-or-unattended-installation.html
 [ElateralLtd git commit template]: https://github.com/ElateralLtd/git-commit-template
