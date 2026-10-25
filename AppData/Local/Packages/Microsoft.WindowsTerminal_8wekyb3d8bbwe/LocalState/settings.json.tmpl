@@ -7,6 +7,14 @@
             "command":
             {
                 "action": "sendInput",
+                "input": "\u001b[13;5u"
+            },
+            "id": "User.sendInput.F8A79DCB"
+        },
+        {
+            "command":
+            {
+                "action": "sendInput",
                 "input": "\u001b[13;6u"
             },
             "id": "User.sendInput.C7F41A02"
@@ -15,9 +23,9 @@
             "command":
             {
                 "action": "sendInput",
-                "input": "\u001b[13;5u"
+                "input": "\u001b[13;2u"
             },
-            "id": "User.sendInput.F8A79DCB"
+            "id": "User.sendInput.8882FD6D"
         },
         {
             "command":
@@ -34,22 +42,6 @@
                 "direction": "next"
             },
             "id": "User.scrollToMark.2A0DA8E0"
-        },
-        {
-            "command":
-            {
-                "action": "sendInput",
-                "input": "\u001b[13;2u"
-            },
-            "id": "User.sendInput.8882FD6D"
-        },
-        {
-            "command":
-            {
-                "action": "selectCommand",
-                "direction": "prev"
-            },
-            "id": "User.selectCommand.D3F0B923"
         },
         {
             "command":
@@ -74,6 +66,14 @@
                 "direction": "next"
             },
             "id": "User.selectCommand.2A0DA8E0"
+        },
+        {
+            "command":
+            {
+                "action": "selectCommand",
+                "direction": "prev"
+            },
+            "id": "User.selectCommand.D3F0B923"
         }
     ],
     "copyFormatting": "none",
@@ -83,7 +83,7 @@
         "Windows.Terminal.Azure",
         "Windows.Terminal.Wsl"
     ],
-    "firstWindowPreference": "persistedWindowLayout",
+    "firstWindowPreference": "persistedLayoutAndContent",
     "keybindings":
     [
         {
@@ -91,20 +91,16 @@
             "keys": "alt+shift+enter"
         },
         {
-            "id": "User.scrollToMark.D3F0B923",
-            "keys": "ctrl+up"
-        },
-        {
             "id": "User.sendInput.8882FD6D",
             "keys": "shift+enter"
         },
         {
-            "id": "User.scrollToMark.2A0DA8E0",
-            "keys": "ctrl+down"
-        },
-        {
             "id": "User.sendInput.F8A79DCB",
             "keys": "ctrl+enter"
+        },
+        {
+            "id": "User.scrollToMark.2A0DA8E0",
+            "keys": "ctrl+shift+down"
         },
         {
             "id": "User.sendInput.C7F41A02",
@@ -113,6 +109,10 @@
         {
             "id": "Terminal.CopyToClipboard",
             "keys": "ctrl+c"
+        },
+        {
+            "id": "User.scrollToMark.D3F0B923",
+            "keys": "ctrl+shift+up"
         }
     ],
     "launchMode": "maximized",
@@ -139,7 +139,7 @@
             },
             "historySize": 50000,
             "intenseTextStyle": "all",
-            "experimental.rightClickContextMenu": true,
+            "rightClickContextMenu": true,
             "showMarksOnScrollbar": true
         },
         "list":
@@ -212,27 +212,27 @@
     "schemes":
     [
         {
+            "background": "#002B36",
+            "black": "#073642",
+            "blue": "#268BD2",
+            "brightBlack": "#586E75",
+            "brightBlue": "#839496",
+            "brightCyan": "#93A1A1",
+            "brightGreen": "#586E75",
+            "brightPurple": "#6C71C4",
+            "brightRed": "#CB4B16",
+            "brightWhite": "#FDF6E3",
+            "brightYellow": "#657B83",
+            "cursorColor": "#268BD2",
+            "cyan": "#2AA198",
+            "foreground": "#93A1A1",
+            "green": "#859900",
             "name": "Tinty",
-            "foreground": "#ffffff",
-            "background": "#010409",
-            "cursorColor": "#ffffff",
-            "selectionBackground": "#656c76",
-            "black": "#2f3742",
-            "red": "#ff9492",
-            "green": "#28d751",
-            "yellow": "#f0b72f",
-            "blue": "#71b7ff",
-            "purple": "#cb9eff",
-            "cyan": "#39c5cf",
-            "white": "#f0f6fc",
-            "brightBlack": "#656c76",
-            "brightRed": "#ffb1af",
-            "brightGreen": "#4ae168",
-            "brightYellow": "#f7c843",
-            "brightBlue": "#91cbff",
-            "brightPurple": "#dbb7ff",
-            "brightCyan": "#56d4dd",
-            "brightWhite": "#ffffff"
+            "purple": "#D33682",
+            "red": "#DC322F",
+            "selectionBackground": "#586E75",
+            "white": "#EEE8D5",
+            "yellow": "#B58900"
         },
         {
             "background": "#002B36",
