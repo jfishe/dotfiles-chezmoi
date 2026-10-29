@@ -41,14 +41,23 @@ foreach ($pkg in $packages) {
         $installArgs += @('--location', $ExecutionContext.InvokeCommand.ExpandString($pkg.location))
     }
 
+    # winget rejects a repeated --custom, so the answer file and any raw
+    # switches are joined into a single value.
+    $customParts = @()
     if ($pkg.custom) {
-        $iniPath = Join-Path '{{ .chezmoi.sourceDir }}' 'winget' $pkg.custom
+        # Nested Join-Path: Windows PowerShell 5.1 (which chezmoi uses for
+        # .ps1 scripts) only accepts a single child path.
+        $iniPath = Join-Path (Join-Path '{{ .chezmoi.sourceDir }}' 'winget') $pkg.custom
         if (-not (Test-Path $iniPath)) { throw "Answer file not found: $iniPath" }
-        $installArgs += @('--custom', "/LOADINF=`"$iniPath`"")
+        $customParts += "/LOADINF=`"$iniPath`""
     }
 
     if ($pkg.customArgs) {
-        $installArgs += @('--custom', $pkg.customArgs)
+        $customParts += $pkg.customArgs
+    }
+
+    if ($customParts.Count -gt 0) {
+        $installArgs += @('--custom', ($customParts -join ' '))
     }
 
     winget @installArgs
