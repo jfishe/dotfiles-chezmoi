@@ -72,6 +72,7 @@
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	wdiff = diff --word-diff
 	sh = show --name-only
+	prs = ! gh search prs --owner jfishe --state open --limit 200 --json repository --jq '.[].repository.nameWithOwner' | sort -u
 [pull]
 	rebase = merges
 [include]
